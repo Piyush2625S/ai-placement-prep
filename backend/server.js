@@ -8,10 +8,18 @@ console.log('GROQ KEY:', process.env.GROQ_API_KEY?.substring(0, 8))
 connectDB()
 const app = express()
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'https://ai-placement-prep-flame.vercel.app',
-  ],
+  origin: function(origin, callback) {
+    const allowed = [
+      'http://localhost:5173',
+      'https://ai-placement-prep-flame.vercel.app',
+    ]
+    // Allow any vercel.app subdomain during development
+    if (!origin || allowed.includes(origin) || origin.endsWith('.vercel.app')) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
   credentials: false
 }))
 app.use(express.json())
