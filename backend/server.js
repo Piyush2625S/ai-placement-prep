@@ -8,7 +8,10 @@ console.log('GROQ KEY:', process.env.GROQ_API_KEY?.substring(0, 8))
 connectDB()
 const app = express()
 app.use(cors({
-  origin: '*',
+  origin: [
+    'http://localhost:5173',
+    'https://ai-placement-prep-flame.vercel.app',
+  ],
   credentials: false
 }))
 app.use(express.json())
