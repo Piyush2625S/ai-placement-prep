@@ -7,7 +7,10 @@ dotenv.config()
 console.log('GROQ KEY:', process.env.GROQ_API_KEY?.substring(0, 8))
 connectDB()
 const app = express()
-app.use(cors())
+app.use(cors({
+  origin: '*',
+  credentials: false
+}))
 app.use(express.json())
 
 // Routes
