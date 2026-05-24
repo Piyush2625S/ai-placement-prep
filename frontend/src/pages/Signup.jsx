@@ -145,7 +145,7 @@ export default function Signup() {
             <div>
               <label className="field-label">Full name *</label>
               <input className="input" type="text" name="name"
-                placeholder="Pushpender Prajapati"
+                placeholder="Your full name"
                 value={form.name} onChange={handleChange} required />
             </div>
 
