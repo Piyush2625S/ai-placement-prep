@@ -6,27 +6,27 @@ const EyeIcon = ({ open }) => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
     stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     {open
-      ? (<><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></>)
-      : (<><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></>)}
+      ? (<><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></>)
+      : (<><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94" /><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19" /><line x1="1" y1="1" x2="23" y2="23" /></>)}
   </svg>
 )
 
 function PasswordStrength({ password }) {
   const checks = [
-    { label: '8+ chars',    pass: password.length >= 8          },
-    { label: 'Uppercase',   pass: /[A-Z]/.test(password)        },
-    { label: 'Lowercase',   pass: /[a-z]/.test(password)        },
-    { label: 'Number',      pass: /[0-9]/.test(password)        },
-    { label: 'Special',     pass: /[^A-Za-z0-9]/.test(password) },
+    { label: '8+ chars', pass: password.length >= 8 },
+    { label: 'Uppercase', pass: /[A-Z]/.test(password) },
+    { label: 'Lowercase', pass: /[a-z]/.test(password) },
+    { label: 'Number', pass: /[0-9]/.test(password) },
+    { label: 'Special', pass: /[^A-Za-z0-9]/.test(password) },
   ]
   const passed = checks.filter(c => c.pass).length
-  const color  = passed <= 2 ? 'var(--coral)' : passed <= 3 ? '#f59e0b' : '#22C55E'
-  const label  = passed <= 2 ? 'Weak' : passed <= 3 ? 'Medium' : passed <= 4 ? 'Strong' : 'Very strong'
+  const color = passed <= 2 ? 'var(--coral)' : passed <= 3 ? '#f59e0b' : '#22C55E'
+  const label = passed <= 2 ? 'Weak' : passed <= 3 ? 'Medium' : passed <= 4 ? 'Strong' : 'Very strong'
   if (!password) return null
   return (
     <div style={{ marginTop: '10px' }}>
       <div style={{ display: 'flex', gap: '4px', marginBottom: '6px' }}>
-        {[1,2,3,4,5].map(i => (
+        {[1, 2, 3, 4, 5].map(i => (
           <div key={i} style={{
             flex: 1, height: '3px', borderRadius: '99px',
             background: i <= passed ? color : 'var(--line)',
@@ -53,16 +53,16 @@ function PasswordStrength({ password }) {
 // Journey steps shown on right panel
 const JOURNEY = [
   { icon: '🎯', label: 'Pick a company + round' },
-  { icon: '✍️', label: 'Answer like it\'s real'  },
-  { icon: '📊', label: 'Get scored feedback'     },
-  { icon: '📈', label: 'Track your progress'     },
+  { icon: '✍️', label: 'Answer like it\'s real' },
+  { icon: '📊', label: 'Get scored feedback' },
+  { icon: '📈', label: 'Track your progress' },
 ]
 
 export default function Signup() {
   const navigate = useNavigate()
-  const [form, setForm] = useState({ name:'', email:'', password:'', course:'', passingYear:'', college:'', targetRole:'' })
+  const [form, setForm] = useState({ name: '', email: '', password: '', course: '', passingYear: '', college: '', targetRole: '' })
   const [showPassword, setShowPassword] = useState(false)
-  const [error,   setError]   = useState('')
+  const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [activeStep, setActiveStep] = useState(0)
 
@@ -112,7 +112,9 @@ export default function Signup() {
       }}>
         {/* Top bar */}
         <div style={{ padding: '20px 40px', borderBottom: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div className="nav-logo">prep<span>AI</span></div>
+          <Link to="/" className="nav-logo" style={{ textDecoration: 'none' }}>
+            prep<span>AI</span>
+          </Link>
           <Link to="/login" style={{ fontSize: '13px', color: 'var(--muted)', fontWeight: '500' }}>
             Already have an account? <span style={{ color: 'var(--coral)', fontWeight: '600' }}>Sign in</span>
           </Link>
@@ -159,7 +161,7 @@ export default function Signup() {
                 <label className="field-label">Course *</label>
                 <select className="input" name="course" value={form.course} onChange={handleChange} required style={{ cursor: 'pointer' }}>
                   <option value="">Select</option>
-                  {['B.Tech CSE','B.Tech CSE (AI)','B.Tech IT','B.Tech ECE','B.Tech Other','MCA','BCA','M.Tech','MBA','Other'].map(o => <option key={o}>{o}</option>)}
+                  {['B.Tech CSE', 'B.Tech CSE (AI)', 'B.Tech IT', 'B.Tech ECE', 'B.Tech Other', 'MCA', 'BCA', 'M.Tech', 'MBA', 'Other'].map(o => <option key={o}>{o}</option>)}
                 </select>
               </div>
               <div>
@@ -181,7 +183,7 @@ export default function Signup() {
               <label className="field-label">Target role</label>
               <select className="input" name="targetRole" value={form.targetRole} onChange={handleChange} style={{ cursor: 'pointer' }}>
                 <option value="">Select (optional)</option>
-                {['SDE','SDE-2','Data Analyst','Data Scientist','DevOps Engineer','Product Manager','Frontend Developer','Backend Developer','Full Stack Developer','ML Engineer'].map(o => <option key={o}>{o}</option>)}
+                {['SDE', 'SDE-2', 'Data Analyst', 'Data Scientist', 'DevOps Engineer', 'Product Manager', 'Frontend Developer', 'Backend Developer', 'Full Stack Developer', 'ML Engineer'].map(o => <option key={o}>{o}</option>)}
               </select>
             </div>
 
@@ -281,7 +283,7 @@ export default function Signup() {
               <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)' }}>5/5 done</span>
             </div>
             <div style={{ display: 'flex', gap: '5px', marginBottom: '14px' }}>
-              {[1,2,3,4,5].map(i => (
+              {[1, 2, 3, 4, 5].map(i => (
                 <div key={i} style={{ flex: 1, height: '4px', borderRadius: '99px', background: 'var(--coral)' }} />
               ))}
             </div>

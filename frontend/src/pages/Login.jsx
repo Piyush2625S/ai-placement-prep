@@ -5,17 +5,17 @@ import API from '../api/axios'
 const EyeIcon = ({ open }) => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
     stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    {open ? (<><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></>)
-          : (<><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></>)}
+    {open ? (<><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></>)
+      : (<><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94" /><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19" /><line x1="1" y1="1" x2="23" y2="23" /></>)}
   </svg>
 )
 
 export default function Login() {
   const navigate = useNavigate()
-  const [form,         setForm]         = useState({ email: '', password: '' })
+  const [form, setForm] = useState({ email: '', password: '' })
   const [showPassword, setShowPassword] = useState(false)
-  const [error,        setError]        = useState('')
-  const [loading,      setLoading]      = useState(false)
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
@@ -47,7 +47,9 @@ export default function Login() {
 
       {/* Navbar */}
       <nav className="nav nav-pad">
-        <div className="nav-logo">prep<span>AI</span></div>
+        <Link to="/" className="nav-logo" style={{ textDecoration: 'none' }}>
+          prep<span>AI</span>
+        </Link>
         <Link to="/signup" className="btn btn-primary" style={{ padding: '9px 20px', fontSize: '13px' }}>
           Start free →
         </Link>
@@ -123,7 +125,7 @@ export default function Login() {
               "How would you design a rate limiter for an API?"
             </p>
             <div style={{ display: 'flex', gap: '6px', marginBottom: '16px' }}>
-              {['done','done','active','',''].map((s,i) => (
+              {['done', 'done', 'active', '', ''].map((s, i) => (
                 <div key={i} style={{
                   flex: 1, height: '5px', borderRadius: '99px',
                   background: s === 'done' ? 'var(--coral)' : s === 'active' ? 'var(--sky)' : 'var(--line)',
@@ -144,7 +146,7 @@ export default function Login() {
           <div style={{ display: 'flex', gap: '24px', marginTop: '24px', padding: '0 4px' }}>
             {[
               { n: '20+', l: 'companies covered' },
-              { n: '4',   l: 'rounds each'       },
+              { n: '4', l: 'rounds each' },
               { n: 'Daily', l: 'progress tracked' },
             ].map(({ n, l }) => (
               <div key={n}>
@@ -176,9 +178,9 @@ function Footer() {
       </div>
       <div style={{ display: 'flex', gap: '48px', flexWrap: 'wrap' }}>
         {[
-          { title: 'Product',  links: [{ l: 'Dashboard', h: '/dashboard' }, { l: 'Resume tips', h: '/resume' }] },
-          { title: 'Contact',  links: [{ l: 'hello@prepai.app', h: 'mailto:hello@prepai.app' }, { l: 'Report an issue', h: '#' }] },
-          { title: 'Legal',    links: [{ l: 'Privacy', h: '#' }, { l: 'Terms', h: '#' }] },
+          { title: 'Product', links: [{ l: 'Dashboard', h: '/dashboard' }, { l: 'Resume tips', h: '/resume' }] },
+          { title: 'Contact', links: [{ l: 'hello@prepai.app', h: 'mailto:hello@prepai.app' }, { l: 'Report an issue', h: '#' }] },
+          { title: 'Legal', links: [{ l: 'Privacy', h: '#' }, { l: 'Terms', h: '#' }] },
         ].map(col => (
           <div key={col.title}>
             <div style={{ fontFamily: 'Baloo 2, sans-serif', fontSize: '13px', color: 'var(--indigo)', fontWeight: '600', marginBottom: '10px' }}>{col.title}</div>
